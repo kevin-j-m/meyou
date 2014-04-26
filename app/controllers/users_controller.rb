@@ -15,6 +15,8 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    session[:sign_up_status] = nil
+    session[:user_params] = {}
   end
 
   # GET /users/1/edit
@@ -24,16 +26,28 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    #user_params only references last post, must include prior steps
+    #save prior steps in the session, create the user with the session params
+    session[:user_params] = session[:user_params].merge(user_params)
+    @user = User.new(session[:sign_up_status], session[:user_params])
 
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @user }
+    if @user.valid?
+      if @user.sign_up_finished?
+        respond_to do |format|
+          if @user.save
+            format.html { redirect_to @user, notice: 'User was successfully created.' }
+            format.json { render action: 'show', status: :created, location: @user }
+          else
+            format.html { render action: 'new' }
+            format.json { render json: @user.errors, status: :unprocessable_entity }
+          end
+        end
       else
-        format.html { render action: 'new' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        session[:sign_up_status] = @user.next_sign_up_status
+        render 'new'
       end
+    else
+      render 'new'
     end
   end
 
