@@ -1,0 +1,69 @@
+<h1>Listing users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Middle initial</th>
+      <th>Last name</th>
+      <th>Email</th>
+      <th>Street1</th>
+      <th>Street2</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip</th>
+      <th>Phone</th>
+      <th>Favorite food</th>
+      <th>Favorite artist</th>
+      <th>Company</th>
+      <th>Title</th>
+      <th>Department</th>
+      <th>Last movie seen</th>
+      <th>College degree</th>
+      <th>College</th>
+      <th>Website</th>
+      <th>Twitter user name</th>
+      <th>Photo path</th>
+      <th>Join date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.first_name %></td>
+        <td><%= user.middle_initial %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.street1 %></td>
+        <td><%= user.street2 %></td>
+        <td><%= user.city %></td>
+        <td><%= user.state %></td>
+        <td><%= user.zip %></td>
+        <td><%= user.phone %></td>
+        <td><%= user.favorite_food %></td>
+        <td><%= user.favorite_artist %></td>
+        <td><%= user.company %></td>
+        <td><%= user.title %></td>
+        <td><%= user.department %></td>
+        <td><%= user.last_movie_seen %></td>
+        <td><%= user.college_degree %></td>
+        <td><%= user.college %></td>
+        <td><%= user.website %></td>
+        <td><%= user.twitter_user_name %></td>
+        <td><%= user.photo_path %></td>
+        <td><%= user.join_date %></td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_user_path %>
