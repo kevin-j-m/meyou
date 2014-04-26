@@ -10,96 +10,11 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :middle_initial %><br>
-    <%= f.text_field :middle_initial %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :street1 %><br>
-    <%= f.text_field :street1 %>
-  </div>
-  <div class="field">
-    <%= f.label :street2 %><br>
-    <%= f.text_field :street2 %>
-  </div>
-  <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
-  </div>
-  <div class="field">
-    <%= f.label :state %><br>
-    <%= f.text_field :state %>
-  </div>
-  <div class="field">
-    <%= f.label :zip %><br>
-    <%= f.text_field :zip %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
-  </div>
-  <div class="field">
-    <%= f.label :favorite_food %><br>
-    <%= f.text_field :favorite_food %>
-  </div>
-  <div class="field">
-    <%= f.label :favorite_artist %><br>
-    <%= f.text_field :favorite_artist %>
-  </div>
-  <div class="field">
-    <%= f.label :company %><br>
-    <%= f.text_field :company %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :department %><br>
-    <%= f.text_field :department %>
-  </div>
-  <div class="field">
-    <%= f.label :last_movie_seen %><br>
-    <%= f.text_field :last_movie_seen %>
-  </div>
-  <div class="field">
-    <%= f.label :college_degree %><br>
-    <%= f.text_field :college_degree %>
-  </div>
-  <div class="field">
-    <%= f.label :college %><br>
-    <%= f.text_field :college %>
-  </div>
-  <div class="field">
-    <%= f.label :website %><br>
-    <%= f.text_field :website %>
-  </div>
-  <div class="field">
-    <%= f.label :twitter_user_name %><br>
-    <%= f.text_field :twitter_user_name %>
-  </div>
-  <div class="field">
-    <%= f.label :photo_path %><br>
-    <%= f.text_field :photo_path %>
-  </div>
-  <div class="field">
-    <%= f.label :join_date %><br>
-    <%= f.date_select :join_date %>
-  </div>
+  <%= render "#{@user.sign_up_status}", :f => f%>
+  <%#= render 'who_you_are', :f => f %>
+  <%#= render 'about_you', :f => f%>
+  
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Continue" %>
   </div>
 <% end %>
