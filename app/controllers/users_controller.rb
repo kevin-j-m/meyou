@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     #user_params only references last post, must include prior steps
-    #save prior steps in the session, create the user with the session params
+    #save prior params in the session, create the user with the session params
     session[:user_params] = session[:user_params].merge(user_params)
     @user = User.new(session[:sign_up_status], session[:user_params])
 
@@ -42,11 +42,11 @@ class UsersController < ApplicationController
             format.json { render json: @user.errors, status: :unprocessable_entity }
           end
         end
-      else
+      else #move to the next step, continue data entry
         session[:sign_up_status] = @user.next_sign_up_status
         render 'new'
       end
-    else
+    else #re-render page, show validation errors
       render 'new'
     end
   end
