@@ -1,4 +1,8 @@
 Meyou::Application.routes.draw do
+  resources :replies
+
+  resources :posts
+
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
