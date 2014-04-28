@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :posts
+  has_many :replies
 
   validates_presence_of :first_name, :if => lambda {|user| user.sign_up_status == 'who_you_are'}
   validates_presence_of :company, :if => lambda {|user| user.sign_up_status == 'about_you'}
