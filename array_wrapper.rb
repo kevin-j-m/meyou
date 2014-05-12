@@ -5,7 +5,13 @@ class ArrayWrapper
 
   def map
     result = []
-    each_no_parameter {|i| result.push(yield i)}
+    if block_given?
+      each_no_parameter do |i| 
+        result.push(yield i)
+      end
+    else
+      result = @array
+    end
     result
   end
 
@@ -31,7 +37,7 @@ class ArrayWrapper
 end
 
 =begin
-Console output to manually test
+#Console output to manually test
 array = ArrayWrapper.new([1,2,3]) 
 puts 'Show ouput with method signature that takes a block:'
 array.each_with_parameter do |x|
@@ -48,9 +54,14 @@ puts 'increment'
 puts increment
 =end
 
-describe ArrayWrapper do
+describe ArrayWrapper, '#map' do
   it 'iterates through each element' do
     array = ArrayWrapper.new([1,2,3])
     expect(array.map{|x| x+1 }).to eq [2,3,4]
   end
-end
+
+  it 'returns the array if no block is given' do
+    array = ArrayWrapper.new([1,1,1])
+    expect(array.map).to eq [1,1,1]
+  end
+end  
